@@ -1,5 +1,21 @@
 ## What is this?
+WireHole (UI) is a fork of WireHole with added Web UI for WireGuard Client Management. The WireGuard UI utitlize the the image of [wg-easy](https://github.com/WeeJeWel/wg-easy)
+
+<p align="center">
+  <img src="./screenshot.png" width="702" />
+</p>
+
 WireHole is a combination of WireGuard, PiHole, and Unbound in a docker-compose project with the intent of enabling users to quickly and easily create and deploy a personally managed full or split-tunnel WireGuard VPN with ad blocking capabilities (via Pihole), and DNS caching with additional privacy options (via Unbound). 
+
+## Features
+
+* All-in-one: WireGuard + Web UI + Adblock (via Pi-Hole) + DNS Caching (via Unbound)
+* Easy installation, simple to use.
+* List, create, edit, delete, enable & disable clients.
+* Show a client's QR code.
+* Download a client's configuration file.
+* Statistics for which clients are connected.
+* Gravatar support.
 
 ## Author
 
@@ -21,35 +37,12 @@ Give a ⭐ if this project helped you!
 ---
 
 
-### Supported Architectures
-
-The Wireguard image supports multiple architectures such as `x86-64`, `arm64` and `armhf`. Linuxserver - who makes the wireguard image we use - utilises the docker manifest for multi-platform awareness. 
-
-More information is available from docker [here](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list) and LinuxServer's announcement [here](https://blog.linuxserver.io/2019/02/21/the-lsio-pipeline-project/).
-
-Simply pulling `linuxserver/wireguard` should retrieve the correct image for your arch, but you can also pull specific arch images via tags 
-
-> *This is the default configuration in this project*
-
-**The architectures supported by this image are:**
-
-| Architecture | Tag |
-| :----: | --- |
-| x86-64 | amd64-latest |
-| arm64 | arm64v8-latest |
-| armhf | arm32v7-latest |
-
-
-##### Optional - Fully Automated Deployment on Oracle Cloud:
-  - https://medium.com/@devinjaystokes/automating-the-deployment-of-your-forever-free-pihole-and-wireguard-server-dce581f71b7
- 
-
 ### Quickstart
 To get started all you need to do is clone the repository and spin up the containers.
 
 ```bash
-git clone https://github.com/IAmStoxe/wirehole.git
-cd wirehole
+git clone https://github.com/10h30/wirehole-ui.git
+cd wirehole-ui
 docker-compose up
 ```
 ### Full Setup
@@ -82,60 +75,14 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-
     sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 # wirehole
-git clone https://github.com/IAmStoxe/wirehole.git &&
+git clone https://github.com/10h30/wirehole-ui.git &&
     cd wirehole &&
     docker-compose up
 
 ```
-
-
-Within the output of the terminal will be QR codes you can (if you choose) to setup it WireGuard on your phone.
-
-```bash
-wireguard    | **** Internal subnet is set to 10.6.0.0 ****
-wireguard    | **** Peer DNS servers will be set to 10.2.0.100 ****
-wireguard    | **** No found wg0.conf found (maybe an initial install), generating 1 server and 1 peer/client confs ****
-wireguard    | PEER 1 QR code:
-wireguard    | █████████████████████████████████████████████████████████████████
-wireguard    | █████████████████████████████████████████████████████████████████
-wireguard    | ████ ▄▄▄▄▄ █▀▀▀▄ ▀▀▀▀▄█ ██   ▄▀ ██ ██▄▀█    █▄▄█▀ ▄ ██ ▄▄▄▄▄ ████
-wireguard    | ████ █   █ █▀▄█▀█▄█▄██▀▄   ▀▀██▀▄█ ▀▄█  ▀ █▀▄█▄ ▄▄▄ ██ █   █ ████
-wireguard    | ████ █▄▄▄█ █▀█   ▀▀▄                               ▄██ █▄▄▄█ ████
-wireguard    | ████▄▄▄▄▄▄▄█   ▀ ▀   █                         █▄█▄▀ █▄▄▄▄▄▄▄████
-wireguard    | ████ ▄▄  █▄▄▄  ▄▀█▀▀▄    ▀█ ▀█  ▄  █▀▀▄▄██▄▄▀▀█▄ ██▀▀ █ █▄█ ▀████
-wireguard    | █████  ▄█ ▄  ▀▀█▄▄  █▀ ▀ ▀ ▄  ▄ ▀▄▀▀█ ██ ▀██▀   ▀ ▀▀   ▀  ▀▄ ████
-wireguard    | ████▀▀██  ▄▄▄ ██▀▄▄██▀ ██▀▄  ▀▀ █▄█   ▄ ▄█▄██   ▀▄▄█  █▀▀█ ▄▀████
-wireguard    | ████ ▄█▀█▀▄▄   ▄███ ▄█ ▀▀▀▀█ ▄█ ▀▀▀▀▀▄ █   █ ███▄ █ ▄▄▄▄▀▀▀ █████
-wireguard    | ████▀▄ ▀▀ ▄▄ ▄▄  █▀██    ▀▀▀▀▀  ▄  █▀▀██  ██▀   ▀█▄█▄█  ▄▄▀ ▀████
-wireguard    | ████   ▀█ ▄▄                                          █  ▀▀██████
-wireguard    | ███████  ▄▄█ █                                        ▄█▀█▀▀▄████
-wireguard    | ████ ▄  █▄▄▀  ▄   ▀▄ █ ▄██▀▀█▀   █▄▄█▀▄█▀█▄ █ ▀▄█ ▄█ ▀   █  █████
-wireguard    | ████▄██▀█▄▄ ▀ ▄▀                       ▀▄  ▄█ ▀▄  █▀ ▀██▀▄███████
-wireguard    | ████ ▀█  ▄▄▄ ██▀███▄█▄█ █▄█▀ ▀ ▄▄▄ ▀▀  ▀▄ ▀▀█   █ █  ▄▄▄   ▄▀████
-wireguard    | ████▄██  █▄█  █                                          ▀▀ ▀████
-wireguard    | █████▀█▄▄▄▄▄ █▄ ▀▄ ██  ██▀ ▄ █▄ ▄▄▄▀ ▀▄▀█  █▀ █▄ ▄ ▄▄▄  ▄ ▀▄█████
-wireguard    | █████▀▄▀  ▄▄█▄▀ ██▄▄▄    █▀  ██    ██ █▄   ██▄ ▄▀█▄██▀▄█   █▀████
-wireguard    | ████▄   ▀ ▄ ▀ ▀▀▀▀▀▀█▀██▀ █  █▀█▀███ ▀▄█  █▄ █     ▀▀█▀██▀ ▄█████
-wireguard    | ████ ▀ ▄   ██▄ ▀▀▀▄▀█  ▀▀▄ ▄ ▄  █▀▀▄█ ▄█▄▀█▄█▀ ▄▀█▄▀ ▀▀▀ ▀▀ ▀████
-wireguard    | ███████ ▄█▄  ▀█▄▄  ▀█ █▀ █▀▄ ▄ ▀▄█▄▄█▀▄█▄▄▄▄█▀ ▀█ █▀  ▄ ██▀▄█████
-wireguard    | ████▀█ █▀ ▄                                             █ ▄▀█████
-wireguard    | ████▀▄ ▄▄█▄▄  ▄ ▄██▄ ▀ █ ▀ ▄▄█▀▀ ▄ ▀▀▄█▀▄██▀▀ ▄   ▄▄▄▄▀▀▄▀▀▀ ████
-wireguard    | ████ ▀▄▄▀▀▄▀▀▀▄ ▄ █▄▄▀ ██▀▄▀ █▄██▀▀▄█▄▄█ ████▄ ▀█▄█▀▄▀ ▀▄ ▀ █████
-wireguard    | ████ ▀ ▀▀▄▄ ▄ █▄ ▄ ██ ▄▀█▄▄  ▄ ▄ █▄▀ ▄▄▀██▄▀▀██▀▀▄▄ ▄   ██ ▄▀████
-wireguard    | ██████████▄█▀▀█ ▄█ █▄▄ ▀▄▀█▀▀  ▄▄▄ ▀█▀█ ▄▀█▀█▀▀ ██▄▀ ▄▄▄ ▄██▄████
-wireguard    | ████ ▄▄▄▄▄ █▄▄▄█▀▄█▀██ ▄ ▀█ ▀  █▄█ ▀▀█▄ ██▄█ ▀▄ ▀█▄▄ █▄█    █████
-wireguard    | ████ █   █ █  ▄▄ ▄█   ▄▄█ █▀   ▄ ▄  █ ▄█▄▄█ █▀ ▄████ ▄▄  ▀▀▄▄████
-wireguard    | ████ █▄▄▄█ █ ▀ ▄▄█ ▄ ▀▀▄██▄▀█▀█ █▀█▀▀▀▄   ▄ █▀▀▄▀ ▄▀███▀██▀██████
-wireguard    | ████▄▄▄▄▄▄▄█▄██▄▄█▄▄▄▄▄██▄█▄▄▄█▄█▄█▄▄▄▄█▄▄▄█████▄▄█▄█▄▄████▄█████
-wireguard    | █████████████████████████████████████████████████████████████████
-wireguard    | █████████████████████████████████████████████████████████████████
-wireguard    | [cont-init.d] 30-config: exited 0.
-wireguard    | [cont-init.d] 99-custom-scripts: executing...
-wireguard    | [custom-init] no custom files found exiting...
-wireguard    | [cont-init.d] 99-custom-scripts: exited 0.
-wireguard    | [cont-init.d] done.
-wireguard    | [services.d] starting services
-```
+Change `WG_HOST=my.ddns.net` to your server's public address, e.g. `WG_HOST=vpn.mydomain.com`.
+> By default, any WireGuard client will have access to the Web UI, unless you set a password.
+The Web UI will be available on http://0.0.0.0:51821. You can create new clients there.
 
 ---
 
@@ -159,7 +106,7 @@ While connected to WireGuard, navigate to http://10.2.0.100/admin
 If you're using a dynamic DNS provider, you can edit `docker-compose.yml` under "wireguard". 
 Here is an excerpt from the file. 
 
-You need to uncomment `#- SERVERURL` so it reads `- SERVERURL` without the `#` and then change `my.ddns.net` to your DDNS URL.
+You need to uncomment `#- WG_HOST` so it reads `- WG_HOST` without the `#` and then change `my.ddns.net` to your DDNS URL.
 
 ```yaml
 wireguard:
@@ -224,20 +171,6 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 
 ---
 
-## Adding Clients
-If the environment variable `PEERS` is set to a number or a list of strings separated by comma, the container will run in server mode and the necessary server and peer/client confs will be generated. The peer/client config qr codes will be output in the docker log. They will also be saved in text and png format under `/config/peerX` in case `PEERS` is a variable and an integer or `/config/peer_X` in case a list of names was provided instead of an integer.
-
-Variables `SERVERURL`, `SERVERPORT`, `INTERNAL_SUBNET` and `PEERDNS` are optional variables used for server mode. Any changes to these environment variables will trigger regeneration of server and peer confs. Peer/client confs will be recreated with existing private/public keys. Delete the peer folders for the keys to be recreated along with the confs.
-
-To add more peers/clients later on, you increment the `PEERS` environment variable or add more elements to the list and recreate the container.
-
-To display the QR codes of active peers again, you can use the following command and list the peer numbers as arguments: `docker exec -it wireguard /app/show-peer 1 4 5` or `docker exec -it wireguard /app/show-peer myPC myPhone myTablet` (Keep in mind that the QR codes are also stored as PNGs in the config folder).
-
-The templates used for server and peer confs are saved under `/config/templates`. Advanced users can modify these templates and force conf generation by deleting `/config/wg0.conf` and restarting the container.
-
-*(This portion of documentation has been adapted from [docker-wireguard](https://github.com/linuxserver/docker-wireguard/blob/master/README.md))*
-
----
 
 ## Modifying the upstream DNS provider for Unbound
 If you choose to not use Cloudflare any reason you are able to modify the upstream DNS provider in `unbound.conf`.
@@ -333,17 +266,6 @@ Below are the instructions for updating **containers**:
 
 
 ## FAQ
-
-### How do you add client configurations?
-If the environment variable `PEERS` is set to a number, the container will run in server mode and the necessary server and peer/client confs will be generated. The peer/client config qr codes will be output in the docker log. They will also be saved in text and png format under /config/peerX.
-
-Variables `SERVERURL`, `SERVERPORT`, `INTERNAL_SUBNET` and `PEERDNS` are optional variables used for server mode. Any changes to these environment variables will trigger regeneration of server and peer confs. Peer/client confs will be recreated with existing private/public keys. Delete the peer folders for the keys to be recreated along with the confs.
-
-To add more peers/clients later on, you increment the `PEERS` environment variable and recreate the container.
-
-To display the QR codes of active peers again, you can use the following command and list the peer numbers as arguments: `docker-compose exec wireguard /app/show-peer 1 4 5` will show peers #1 #4 and #5 (Keep in mind that the QR codes are also stored as PNGs in the config folder).
-
-The templates used for server and peer confs are saved under /config/templates. Advanced users can modify these templates and force conf generation by deleting /config/wg0.conf and restarting the container.
 
 ### Can I build ARM variants on x86_64?
 
