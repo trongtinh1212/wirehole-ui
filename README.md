@@ -2,7 +2,7 @@
 WireHole (UI) is a fork of WireHole with added Web UI for WireGuard Client Management. The WireGuard UI utitlize the the image of [wg-easy](https://github.com/WeeJeWel/wg-easy)
 
 <p align="center">
-  <img src="./screenshot.png" width="702" />
+  <img src="./wirehole-ui.png" width="702" />
 </p>
 
 WireHole is a combination of WireGuard, PiHole, and Unbound in a docker-compose project with the intent of enabling users to quickly and easily create and deploy a personally managed full or split-tunnel WireGuard VPN with ad blocking capabilities (via Pihole), and DNS caching with additional privacy options (via Unbound). 
