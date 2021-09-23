@@ -1,11 +1,13 @@
 ## What is this?
-WireHole (UI) is a fork of WireHole with added Web UI for WireGuard Client Management. The WireGuard UI utitlize the the image of [wg-easy](https://github.com/WeeJeWel/wg-easy)
+WireHole (UI) is a fork of WireHole, which is a combination of WireGuard, PiHole, and Unbound in a docker-compose project with the intent of enabling users to quickly and easily create and deploy a personally managed full or split-tunnel WireGuard VPN with ad blocking capabilities (via Pihole), and DNS caching with additional privacy options (via Unbound). 
+
+Wirehole (UI) is added a Web UI for WireGuard Client Management. It use the Docker image of [wg-easy](https://github.com/WeeJeWel/wg-easy), replacing the Linuxserver's WireGuard image.
 
 <p align="center">
   <img src="./wirehole-ui.png" width="702" />
 </p>
 
-WireHole is a combination of WireGuard, PiHole, and Unbound in a docker-compose project with the intent of enabling users to quickly and easily create and deploy a personally managed full or split-tunnel WireGuard VPN with ad blocking capabilities (via Pihole), and DNS caching with additional privacy options (via Unbound). 
+WireHole 
 
 ## Features
 
@@ -35,7 +37,6 @@ Give a ⭐ if this project helped you!
 <a href="https://www.buymeacoffee.com/stoxe" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-orange.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
  
 ---
-
 
 ### Quickstart
 To get started all you need to do is clone the repository and spin up the containers.
@@ -123,22 +124,6 @@ wireguard:
 
 Container images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080` outside the container.
 
-| Parameter | Function |
-| :----: | --- |
-| `-p 51820/udp` | wireguard port |
-| `-e PUID=1000` | for UserID - see below for explanation |
-| `-e PGID=1000` | for GroupID - see below for explanation |
-| `-e TZ=Europe/London` | Specify a timezone to use EG Europe/London |
-| `-e SERVERURL=wireguard.domain.com` | External IP or domain name for docker host. Used in server mode. If set to `auto`, the container will try to determine and set the external IP automatically |
-| `-e SERVERPORT=51820` | External port for docker host. Used in server mode. |
-| `-e PEERS=1` | Number of peers to create confs for. Required for server mode. Can be a list of names too: myPC,myPhone,myTablet... |
-| `-e PEERDNS=auto` | DNS server set in peer/client configs (can be set as `8.8.8.8`). Used in server mode. Defaults to `auto`, which uses wireguard docker host's DNS via included CoreDNS forward. |
-| `-e INTERNAL_SUBNET=10.13.13.0` | Internal subnet for the wireguard and server and peers (only change if it clashes). Used in server mode. |
-| `-e ALLOWEDIPS=0.0.0.0/0` | The IPs/Ranges that the peers will be able to reach using the VPN connection. If not specified the default value is: '0.0.0.0/0, ::0/0' This will cause ALL traffic to route through the VPN, if you want split tunneling, set this to only the IPs you would like to use the tunnel AND the ip of the server's WG ip, such as 10.13.13.1. |
-| `-v /config` | Contains all relevant configuration files. |
-| `-v /lib/modules` | Maps host's modules folder. |
-| `--sysctl=` | Required for client mode. |
-
 ### Environment variables from files (Docker secrets)
 
 You can set any environment variable from a file by using a special prepend `FILE__`.
@@ -220,21 +205,8 @@ Providers they have the information for:
 Provided your DNS is properly configured on the device you're using, and you're connected to WireGuard, you can now navigate to http://pi.hole/admin and it should take you right to the pihole admin interface.
 
 ---
-## Support Info
-
-* Shell access whilst the container is running: `docker exec -it wireguard /bin/bash`
-* To monitor the logs of the container in realtime: `docker logs -f wireguard`
-* container version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' wireguard`
-* image version number
-  * `docker inspect -f '{{ index .Config.Labels "build_version" }}' ghcr.io/linuxserver/wireguard`
-
----
 
 ## Updating Info
-
-LinuxServer images are generally static, versioned, and require an image update and container recreation to update the app inside. 
-> **Note:** Updating apps inside the container is NOT supported.
 
 Below are the instructions for updating **containers**:
 
