@@ -46,7 +46,7 @@ git clone https://github.com/10h30/wirehole-ui.git
 cd wirehole-ui
 nano docker-compose.yml
 ```
-If you are using Raspberry Pi, please uncomment `#image: "mvance/unbound-rpi:latest" and add comment to `image: "mvance/unbound:latest"
+If you are using Raspberry Pi, please uncomment `#image: "mvance/unbound-rpi:latest"` and add comment to `image: "mvance/unbound:latest"`
 
 
 ### Full Setup
