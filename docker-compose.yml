@@ -9,6 +9,7 @@ networks:
 
 services:
   unbound:
+    #image: "mvance/unbound-rpi:latest"
     image: "mvance/unbound:latest"
     container_name: unbound
     restart: unless-stopped
