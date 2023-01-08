@@ -1,4 +1,4 @@
-version: "3"
+version: "3.8"
 
 networks:
   private_network:
@@ -10,7 +10,8 @@ networks:
 services:
   unbound:
     #image: "mvance/unbound-rpi:latest"
-    image: "mvance/unbound:1.17.0"
+    #image: "mvance/unbound:1.17.0"
+    image: "pedantic/unbound:latest"
     container_name: unbound
     restart: unless-stopped
     hostname: "unbound"
@@ -25,10 +26,10 @@ services:
     environment:
       # ⚠️ Required:
       # Change this to your host's public address
-      - WG_HOST= my.ddns.net
+      - WG_HOST=my.ddns.net
 
       # Optional:
-      - PASSWORD=10h30
+      - PASSWORD=Your Password
       - WG_PORT=51820
       - WG_DEFAULT_ADDRESS=10.6.0.x
       - WG_DEFAULT_DNS=10.2.0.100
@@ -67,7 +68,7 @@ services:
       - 127.0.0.1
       - 10.2.0.200 # Points to unbound
     environment:
-      TZ: "Asia/Hong_Kong"
+      TZ: "Asia/Ho_Chi_Minh"
       WEBPASSWORD: "" # Blank password - Can be whatever you want.
       ServerIP: 10.2.0.100 # Internal IP of pihole
       DNS1: 10.2.0.200 # Unbound IP
