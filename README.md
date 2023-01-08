@@ -47,6 +47,7 @@ cd wirehole-ui
 nano docker-compose.yml
 ```
 If you are using Raspberry Pi, please uncomment `#image: "mvance/unbound-rpi:latest"` and add comment to `image: "mvance/unbound:latest"`
+
 If you are using Raspberry Pi with ARM64, please uncomment `#image: "mvance/unbound-rpi:latest"` and `#image: "mvance/unbound:latest"`, add comment to `image: "pedantic/unbound:latest"`
 
 
