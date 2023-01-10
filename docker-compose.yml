@@ -9,9 +9,9 @@ networks:
 
 services:
   unbound:
-    #image: "mvance/unbound-rpi:latest"
+    #image: "mvance/unbound-rpi:latest" # Docker image for Raspberry Pi or ARM Hardware
     #image: "mvance/unbound:1.17.0"
-    image: "pedantic/unbound:latest"
+    image: pedantic/unbound:latest # A clone docker image for Raspberry Pi ARM64 only
     container_name: unbound
     restart: unless-stopped
     hostname: "unbound"
@@ -26,14 +26,16 @@ services:
     environment:
       # ⚠️ Required:
       # Change this to your host's public address
-      - WG_HOST=my.ddns.net
+      - WG_HOST=my.ddns.net  #your static IP/DDNS
 
       # Optional:
       - PASSWORD=Your Password
       - WG_PORT=51820
       - WG_DEFAULT_ADDRESS=10.6.0.x
       - WG_DEFAULT_DNS=10.2.0.100
-      # - WG_ALLOWED_IPS=192.168.15.0/24, 10.0.1.0/24
+      - WG_PERSISTENT_KEEPALIVE=25
+
+      #- WG_ALLOWED_IPS=192.168.15.0/24, 10.0.1.0/24 , This is default value if not set: 0.0.0.0/0, ::/0
 
     image: weejewel/wg-easy
     container_name: wg-easy
