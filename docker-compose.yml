@@ -11,7 +11,8 @@ services:
   unbound:
     #image: "mvance/unbound-rpi:latest" # Docker image for Raspberry Pi or ARM Hardware
     #image: "mvance/unbound:1.17.0"
-    image: pedantic/unbound:latest # A clone docker image for Raspberry Pi ARM64 only
+    #image: pedantic/unbound:latest # A clone docker image for Raspberry Pi ARM64 only
+    image: klutchell/unbound:latest  
     container_name: unbound
     restart: unless-stopped
     hostname: "unbound"
@@ -34,7 +35,7 @@ services:
       - WG_DEFAULT_ADDRESS=10.6.0.x
       - WG_DEFAULT_DNS=10.2.0.100
       - WG_PERSISTENT_KEEPALIVE=25
-
+      #- WG_MTU=1420
       #- WG_ALLOWED_IPS=192.168.15.0/24, 10.0.1.0/24 , This is default value if not set: 0.0.0.0/0, ::/0
 
     image: weejewel/wg-easy
