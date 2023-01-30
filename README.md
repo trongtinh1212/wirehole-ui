@@ -277,7 +277,11 @@ Both of these approaches have positives and negatives however their setup is out
 
 
 ## Pi-hole and iOS Private Relay
-There is now the option to set up your Pi-hole to allow these connections. If you add BLOCK_ICLOUD_PR=false in /etc/pihole/pihole-FTL.conf both of the above mentioned services from Apple will work again. 
+
+There is now the option to set up your Pi-hole to allow these connections. 
+
+If you add BLOCK_ICLOUD_PR=false in /etc/pihole/pihole-FTL.conf both of the above mentioned services from Apple will work again.
+
 However, your Pi-hole is not going to filter any of the traffic encrypted by the Private Relay setting.
 
 Source : https://www.reddit.com/r/pihole/comments/x8yp0b/confusion_with_pihole_and_ios_private_relay_hide/?utm_source=share&utm_medium=web2x&context=3
